@@ -1,8 +1,54 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import fetchMock from "fetch-mock/es5/client";
 
 import apiClient from "./ApiClient";
 
 describe("apiClient", () => {
+  it("Should retrieve parsed json", () => {
+    const expected = { a: "a", b: null };
+    const response = JSON.stringify(expected);
+    const route = "http://example.com/tets1";
+
+    fetchMock.get(route, {
+      body: response,
+      headers: { "content-type": "application/json" },
+    });
+
+    return apiClient
+      .get(route, {})
+      .then(data => expect(data).toEqual(expected));
+  });
+
+  it("Should update and return parsed json", () => {
+    const expected = { a: "a", b: null };
+    const response = JSON.stringify(expected);
+    const route = "http://example.com/tets1";
+
+    fetchMock.put(route, {
+      body: response,
+      headers: { "content-type": "application/json" },
+    });
+
+    return apiClient
+      .put(route, {})
+      .then(data => expect(data).toEqual(expected));
+  });
+
+  it("Should modify and return parsed json", () => {
+    const expected = { a: "a", b: null };
+    const response = JSON.stringify(expected);
+    const route = "http://example.com/tets1";
+
+    fetchMock.patch(route, {
+      body: response,
+      headers: { "content-type": "application/json" },
+    });
+
+    return apiClient
+      .patch(route, {})
+      .then(data => expect(data).toEqual(expected));
+  });
+
   it("Should return parsed json", () => {
     const expected = { a: "a", b: null };
     const response = JSON.stringify(expected);
@@ -15,6 +61,21 @@ describe("apiClient", () => {
 
     return apiClient
       .post(route, {})
+      .then(data => expect(data).toEqual(expected));
+  });
+
+  it("Should delete and return remaining parsed json", () => {
+    const expected = { a: "a", b: null };
+    const response = JSON.stringify(expected);
+    const route = "http://example.com/tets1";
+
+    fetchMock.delete(route, {
+      body: response,
+      headers: { "content-type": "application/json" },
+    });
+
+    return apiClient
+      .delete(route, {})
       .then(data => expect(data).toEqual(expected));
   });
 
