@@ -30,4 +30,10 @@ describe("Action Helpers", () => {
       new Error("Type parameter is mandatory"),
     );
   });
+
+  it("Should change result of async call based on request type with payload", () => {
+    expect(asyncAction.request()).toEqual({ type: "GET_ASYNC_DATA_REQUEST" });
+    expect(asyncAction.success()).toEqual({ type: "GET_ASYNC_DATA_SUCCESS" });
+    expect(asyncAction.failure()).toEqual({ type: "GET_ASYNC_DATA_FAILURE" });
+  });
 });

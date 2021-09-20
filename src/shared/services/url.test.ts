@@ -34,6 +34,13 @@ describe("Url", () => {
 
     expect(url.toString()).toEqual(expectedUrl);
   });
+
+  it("Should return empty string", () => {
+    const expectedUrl = "";
+    const url = new Url();
+
+    expect(url.toString()).toEqual(expectedUrl);
+  });
 });
 
 describe("getUrlWithQuery", () => {
